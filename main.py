@@ -1,7 +1,7 @@
 from turtle import Screen
 from snake import Snake
 from food import Food
-from scoreboard import Scoreboard
+from score import Scoreboard
 import time
 
 
@@ -13,8 +13,6 @@ screen.title("The Snake Game")
 screen.tracer(0)
 
 gameOver = False
-
-score = 0
 
 snake = Snake()
 food = Food()
@@ -44,14 +42,15 @@ while not gameOver:
     # Detect boundary collision
     if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
         gameOver = True
-        scoreboard.gameOver()
+        scoreboard.reset()
+        snake.reset()
 
     #Detecting tail collision
-
     for tail in snake.snake[1:]:
         if snake.head.distance(tail) < 10:
             gameOver = True
-            scoreboard.gameOver()
+            scoreboard.reset()
+            snake.reset()
 
 
 
